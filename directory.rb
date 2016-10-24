@@ -23,11 +23,10 @@ def print_header
 end
 
 
-#method to print names under 12 characters (Exercise 8.3)
+#change each method to a loop (Exercise 8.4)
 def print(students)
-  students_by_length = students.select{|student| student[:name].length < 12 }
-  students_by_length.each_with_index  do |student, index|
-    puts "#{index + 1}) #{student[:name]} (#{student[:cohort].capitalize} cohort)"
+  for student in students do
+    puts "#{student[:name]} (#{student[:cohort].capitalize} cohort)"
   end
 end
 
@@ -41,5 +40,3 @@ students = input_students
 print_header
 print(students)
 print_footer (students)
-
-#note: Come back to Exercise 2 & 3

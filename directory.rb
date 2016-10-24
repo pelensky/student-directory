@@ -4,10 +4,10 @@ def input_students
   #create an empty array
   students = []
   #get the first name
-  name = gets.chomp
+  name = gets.strip
   #get the cohort
   puts "What cohort are they in?"
-  cohort = gets.chomp
+  cohort = gets.strip
     if cohort.empty?
       cohort = "November"
     else

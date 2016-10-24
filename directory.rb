@@ -22,10 +22,11 @@ def print_header
   puts "-------------"
 end
 
-#method to print the students names, one on each line
+
+#method to print names with number (Exercise 1)
 def print(students)
-  students.each  do |student|
-    puts "#{student[:name]} (#{student[:cohort].capitalize} cohort)"
+  students.each_with_index  do |student, index|
+    puts "#{index}) #{student[:name]} (#{student[:cohort].capitalize} cohort)"
   end
 end
 
@@ -39,3 +40,5 @@ students = input_students
 print_header
 print(students)
 print_footer (students)
+
+#note: Come back to Exercise 2 & 3

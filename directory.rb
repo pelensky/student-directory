@@ -12,7 +12,7 @@ def process(selection)
   when "1"
     input_students
   when "2"
-    show_students(@students)
+    show_students
   when "9"
     exit #this will cause the program to terminate
   else
@@ -27,7 +27,8 @@ def print_menu
 end
 
 def input_students
-  puts "Please enter a name."
+  puts "Please enter the name of a student."
+  puts "To finish, just hit return twice."
   name = gets.chomp
   while !name.empty? do
   @students << {name: name, cohort: :november}
@@ -36,32 +37,32 @@ def input_students
   end
 end
 
-def show_students(students)
-  if students.length >= 1
+def show_students
+  if @students.length >= 1
     print_header
-    print_students_list(@students)
-    print_footer(@students)
+    print_students_list
+    print_footer
   else
     puts "You have not yet added any students. Please add a student to see the list."
   end
 end
 
 def print_header
-  puts "The students of my cohort at Makers Academy"
+  puts "The students of Villains Academy"
   puts "--------------"
 end
 
-def print_students_list(students)
-  students.each do |student|
+def print_students_list
+  @students.each do |student|
     puts "#{student[:name]} (#{student[:cohort].capitalize} cohort)"
     end
 end
 
-def print_footer(students)
-  if students.length == 1
+def print_footer
+  if @students.length == 1
     puts "Overall, we have 1 great student."
   else
-    puts "Overall, we have #{students.count} great students"
+    puts "Overall, we have #{@students.count} great students"
   end
 end
 

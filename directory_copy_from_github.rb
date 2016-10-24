@@ -35,7 +35,10 @@ def print_footer(students)
   puts "Overall, we have #{students.count} great students"
 end
 
-
+if students.length >= 1
 print_header
 print_students(students)
 print_footer(students)
+else
+  puts "You have not yet added any students. Please add a student to see the list."
+end

@@ -23,10 +23,13 @@ def print_header
 end
 
 
-#method to print names with number (Exercise 1)
+#method to print names starting with a specific letter (Exercise 8.2)
 def print(students)
-  students.each_with_index  do |student, index|
-    puts "#{index}) #{student[:name]} (#{student[:cohort].capitalize} cohort)"
+  puts "Which letter would you like to search by?"
+  letter = gets.chomp.upcase
+  students_by_letter = students.select{|student| student[:name][0] == letter }
+  students_by_letter.each_with_index  do |student, index|
+    puts "#{index + 1}) #{student[:name]} (#{student[:cohort].capitalize} cohort)"
   end
 end
 

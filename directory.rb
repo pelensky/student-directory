@@ -57,7 +57,13 @@ end
 
 #method to print the footer
 def print_footer(students)
-  puts "Overall, we have #{students.count} great students"
+  if students.count == 0
+    puts "Sadly, we have no students at this time."
+  elsif students.count == 1
+    puts "At this stage, we have 1 great student."
+  else
+    puts "Overall, we have #{students.count} great students"
+  end
 end
 
 #call the methods

@@ -47,10 +47,11 @@ def print_header
   puts "-------------".center(20)
 end
 
-#center output
+# print by cohort
 def print(students)
-   students.each_with_index  do |student, index|
-    puts "#{index + 1}) #{student[:name]} (#{student[:cohort].capitalize} cohort)."
+ students.sort_by  do |student|
+   student[:cohort]
+  puts "#{student[:name]} (#{student[:cohort].capitalize} cohort)."
   end
 end
 

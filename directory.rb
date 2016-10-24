@@ -23,12 +23,10 @@ def print_header
 end
 
 
-#method to print names starting with a specific letter (Exercise 8.2)
+#method to print names under 12 characters (Exercise 8.3)
 def print(students)
-  puts "Which letter would you like to search by?"
-  letter = gets.chomp.upcase
-  students_by_letter = students.select{|student| student[:name][0] == letter }
-  students_by_letter.each_with_index  do |student, index|
+  students_by_length = students.select{|student| student[:name].length < 12 }
+  students_by_length.each_with_index  do |student, index|
     puts "#{index + 1}) #{student[:name]} (#{student[:cohort].capitalize} cohort)"
   end
 end

@@ -1,5 +1,6 @@
   @students = []
-
+  @name = ""
+  @cohort = ""
 
 def interactive_menu
   loop do
@@ -36,11 +37,11 @@ end
 def input_students
   puts "Please enter the name of a student."
   puts "To finish, just hit return twice."
-  name = STDIN.gets.chomp
-  while !name.empty? do
-  @students << {name: name, cohort: :november}
+  @name = STDIN.gets.chomp
+  while !@name.empty? do
+    add_students
   puts "Now we have #{@students.count} students"
-  name = STDIN.gets.chomp
+  @name = STDIN.gets.chomp
   end
 end
 
@@ -88,11 +89,17 @@ end
 def load_students(filename = "students.csv")
   file = File.open(filename, "r")
   file.readlines.each do |line|
-    name, cohort = line.chomp.split(',')
-    @students << {name: name, cohort: cohort.to_sym}
+    @name, @cohort = line.chomp.split(',')
+    add_students
   end
   file.close
 end
+
+def add_students
+  @students << {name: @name, cohort: :november}
+end
+
+
 
 def try_load_students
   filename = ARGV.first # first argument from the command line
@@ -105,5 +112,6 @@ def try_load_students
     exit
   end
 end
+
 try_load_students
 interactive_menu

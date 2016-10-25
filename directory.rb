@@ -1,6 +1,7 @@
   @students = []
   @name = ""
   @cohort = ""
+  @user_file = "students.csv"
 
 def interactive_menu
   loop do
@@ -33,8 +34,8 @@ end
 def print_menu
   puts "1. Input the students"
   puts "2. Show the students"
-  puts "3. Save the list to students.csv"
-  puts "4. Load the list from students.csv"
+  puts "3. Save the list"
+  puts "4. Load the list"
   puts "9. Exit"
 end
 
@@ -82,9 +83,17 @@ def print_footer
   end
 end
 
+def ask_for_filename
+  puts "Which file would you like run?"
+  puts "Please input file name, including .csv"
+  puts "If you do not know, use students.csv"
+  @user_file = STDIN.gets.chomp.downcase
+end
+
 def save_students
   # open the file for writing
-  file = File.open("students.csv", "w")
+  ask_for_filename
+  file = File.open(@user_file, "w")
   #iterate over the array of students
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
@@ -94,8 +103,9 @@ def save_students
   file.close
 end
 
-def load_students(filename = "students.csv")
-  file = File.open(filename, "r")
+def load_students
+  ask_for_filename
+  file = File.open(@user_file, "r")
   file.readlines.each do |line|
     @name, @cohort = line.chomp.split(',')
     add_students

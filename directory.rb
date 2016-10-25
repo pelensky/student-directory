@@ -100,7 +100,6 @@ def add_students
 end
 
 
-
 def try_load_students
   filename = ARGV.first # first argument from the command line
   return if filename.nil? # get out of the method if it isn't given
@@ -108,10 +107,11 @@ def try_load_students
     load_students(filename)
     puts "Loaded #{@students.count} from #{filename}"
   else # if it doesn't exists
+    load_students(filename = "students.csv")
     puts "Sorry, #{filename} doesn't exist."
     exit
   end
 end
 
-try_load_students
+load_students #load students on startup (12.2)
 interactive_menu

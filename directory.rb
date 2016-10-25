@@ -37,12 +37,16 @@ end
 def input_students
   puts "Please enter the name of a student."
   puts "To finish, just hit return twice."
-  @name = STDIN.gets.chomp
+  get_students
   while !@name.empty? do
     add_students
   puts "Now we have #{@students.count} students"
-  @name = STDIN.gets.chomp
+get_students
   end
+end
+
+def get_students
+  @name = STDIN.gets.chomp
 end
 
 def show_students
@@ -113,5 +117,5 @@ def try_load_students
   end
 end
 
-load_students #load students on startup (12.2)
+try_load_students
 interactive_menu

@@ -3,6 +3,8 @@
   @cohort = ""
   @user_file = "students.csv"
 
+require 'csv'
+
 def interactive_menu
   loop do
     print_menu
@@ -91,32 +93,20 @@ def ask_for_filename
 end
 
 def save_students
-  # open the file for writing
   ask_for_filename
-  File.open(@user_file, "w") do |file|
-  @students.each do |student|
+  CSV.open(@user_file, "w") do |csv|
+    @students.each do |student|
     student_data = [student[:name], student[:cohort]]
-    csv_line = student_data.join(",")
-    file.puts csv_line
+    csv << student_data
     end
   end
-  end
-
-#  file = File.open(@user_file, "w")
-  #iterate over the array of students
-#  @students.each do |student|
-#    student_data = [student[:name], student[:cohort]]
-#    csv_line = student_data.join(",")
-#    file.puts csv_line
-#  end
-#  file.close
-#end
+end
 
 def load_students
   ask_for_filename
-  File.open(@user_file, "r") do |file|
-  file.readlines.each do |line|
-    @name, @cohort = line.chomp.split(',')
+  CSV.open(@user_file, "r") do |csv|
+  csv.readlines.each do |line|
+    @name, @cohort = line[0], line[1]
     add_students
   end
 end

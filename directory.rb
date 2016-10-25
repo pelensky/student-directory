@@ -5,7 +5,11 @@
 def interactive_menu
   loop do
     print_menu
-    process(STDIN.gets.chomp)
+    choice = STDIN.gets.chomp
+    puts "You have selected Option #{choice}. Running now."
+    puts "----------"
+    process(choice)
+
   end
 end
 
